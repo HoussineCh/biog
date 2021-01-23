@@ -3,8 +3,8 @@
 	Author: H.CHERGUI
 	First verion: 1.0
 	First verion date: 22/01/2021
-	current verion: 1.0
-	current verion date: 22/01/2021
+	current verion: 2.0
+	current verion date: 23/01/2021
 */
 
 // System files includes
@@ -36,7 +36,7 @@ int main_game() {
 
 	/*temporary code*/
 
-	std::cout << "\n(press \'r\' for a restart)";
+	std::cout << "\n(press \'r\' to restart)";
 	while (1) {	
 		Sleep(200);
 		l_cmd = Input();
