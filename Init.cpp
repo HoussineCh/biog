@@ -60,11 +60,17 @@ u_int16 GC_MAX_LENGTH = 1000;
 u_int16 GC_TICK_TIME = 100;
 
 // command codes
-u_int16 GC_GAME_OVER = 101;
+u_int8 GC_START		= 'g';
+u_int8 GC_RUNNING	= 15 ;
+u_int8 GC_PAUSE		= 'p';
+u_int8 GC_RESTART	= 'r';
+u_int8 GC_GAME_OVER = 101;
+u_int8 GC_SELF_INTERSECT = 69;
+u_int8 GC_WALL_HIT	= 68 ;
 
 
 // Definition of the function Init()
-void Init(u_int8 p_tick, u_int8 p_init_score, u_int8 p_lenght, e_direction p_direction) {
+void Init(u_int8 p_tick, u_int8 p_init_score, u_int8 p_lenght, e_Direction p_direction) {
 
 	// Initializing tick time
 	g_tick = p_tick;

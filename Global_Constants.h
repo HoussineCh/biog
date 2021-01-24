@@ -22,6 +22,12 @@ extern u_int16 GC_MAX_LENGTH ;
 extern u_int16 GC_TICK_TIME ;
 
 // command codes
-extern u_int16 GC_GAME_OVER ;
+extern u_int8 GC_START		;
+extern u_int8 GC_RUNNING	;
+extern u_int8 GC_PAUSE		;
+extern u_int8 GC_RESTART	;
+extern u_int8 GC_GAME_OVER	;
+extern u_int8 GC_SELF_INTERSECT ;
+extern u_int8 GC_WALL_HIT	;
 
 #endif // !GLOBAL_CONSTANTS

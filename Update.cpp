@@ -139,5 +139,5 @@ u_int8 Update(u_int8 p_cmd) {
 		g_hi_score = g_score;
 
 	// return input cmd
-	return p_cmd;
+	return GC_RUNNING;
 }

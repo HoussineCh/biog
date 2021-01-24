@@ -9,6 +9,6 @@
 
 
 // Signature of the function Init()
-u_int8 Draw(u_int8 p_cmd);
+void Draw(e_State p_cmd);
 
 #endif // !DRAW

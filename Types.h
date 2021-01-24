@@ -26,11 +26,20 @@
 #define u_int64 unsigned long long
 
 // define direction enumeration
-enum e_direction {
+enum e_Direction {
 	UP = 'z',
 	DOWN = 's',
 	RIGHT = 'd',
 	LEFT = 'q'
+};
+
+// define states enumeration
+
+enum e_State {
+	E_START ,
+	E_RUNNING ,
+	E_PAUSE ,
+	E_GAME_OVER
 };
 
 // redefining main just to be bada$$
