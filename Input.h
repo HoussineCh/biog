@@ -11,6 +11,6 @@
 #include "Global_Variables.h"
 
 // Signature of the function Init()
-u_int8 Input();
+u_int8 Input(u_int8&);
 
 #endif // !INPUT

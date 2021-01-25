@@ -22,7 +22,7 @@
 
 
 // Drawing the content on the screen
-void Draw(e_State p_state, uint8_t p_cmd) {
+void Draw(e_State p_state, u_int8 p_cmd) {
 	
 	// Clear the screen
 	system("cls");
@@ -49,23 +49,23 @@ void Draw(e_State p_state, uint8_t p_cmd) {
 		}
 
 		// Adding the game's name
-		for (uint8_t j = GC_M / 2 - 8; j < GC_M / 2 + 8; j++) {
+		for (u_int8 j = GC_M / 2 - 8; j < GC_M / 2 + 8; j++) {
 			g_graph[GC_N / 4][j] = GC_GAME_NAME_S[j - (GC_M / 2 - 8)];
 		}
-		for (uint8_t j = GC_M / 2 - 8; j < GC_M / 2 + 8; j++) {
+		for (u_int8 j = GC_M / 2 - 8; j < GC_M / 2 + 8; j++) {
 			g_graph[GC_N / 4+1][j] = GC_GAME_NAME_S[j - (GC_M / 2 - 8)];
 		}
 
 		// Adding the 'click to start' message
-		for (uint8_t j = GC_M / 2 - 9; j < GC_M / 2 + 9; j++) {
+		for (u_int8 j = GC_M / 2 - 9; j < GC_M / 2 + 9; j++) {
 			g_graph[GC_N / 2][j] = GC_START_MSG_S[j - (GC_M / 2 - 9)];
 		}
 
 		// Adding the hi-score
-		for (uint8_t j = GC_M / 2 - 5; j < GC_M / 2 + 5; j++) {
+		for (u_int8 j = GC_M / 2 - 5; j < GC_M / 2 + 5; j++) {
 			g_graph[3*GC_N / 4][j] = GC_HI_SCORE_S[j - (GC_M / 2 - 5) ];
 		}
-		for (uint8_t j = GC_M / 2 + 5; j < GC_M / 2 + 5 + std::to_string(g_hi_score).length(); j++) {
+		for (u_int8 j = GC_M / 2 + 5; j < GC_M / 2 + 5 + std::to_string(g_hi_score).length(); j++) {
 			g_graph[3*GC_N / 4][j] = std::to_string(g_hi_score)[j - (GC_M / 2 + 5)];
 		}
 
@@ -95,7 +95,7 @@ void Draw(e_State p_state, uint8_t p_cmd) {
 	if (p_state == E_PAUSE) {
 		std::cout << "Score: " << g_score << "\t\t\t\t\t\t\t\t\tHi-Score: " << g_hi_score << std::endl;
 		
-		for (uint8_t j = GC_M / 2 - 3; j < GC_M / 2 + 3; j++) {
+		for (u_int8 j = GC_M / 2 - 3; j < GC_M / 2 + 3; j++) {
 			g_graph[GC_N / 2][j] = GC_PAUSE_MSG_S[j - GC_M / 2 + 3];
 		}
 		for (u_int8 i = 0; i < GC_N; i++) {
@@ -115,10 +115,10 @@ void Draw(e_State p_state, uint8_t p_cmd) {
 		std::cout << ((g_score > GC_HI_SCORE) ? ("New hi-score: " + std::to_string(g_score) + " !") : "Score: " + std::to_string(g_score)) << std::endl;
 
 		if (p_cmd == GC_WALL_HIT) {
-			std::cout << "\n\"wall was hit!!\"\n\n";
+			std::cout << "\n\"Wall was hit!!\"\n\n";
 		}
 		else if (p_cmd == GC_SELF_INTERSECT) {
-			std::cout << "\n\"ate your self!!\"\n\n";
+			std::cout << "\n\"Ate your self!!\"\n\n";
 		}
 		else {
 			std::cout << "\n[>>ERR::UNKOWN_REASON]\n\n";

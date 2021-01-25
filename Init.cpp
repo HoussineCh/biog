@@ -57,7 +57,7 @@ u_int16 GC_N = 27, GC_M = 100;
 u_int16 GC_MAX_LENGTH = 1000;
 
 // tick-time
-u_int16 GC_TICK_TIME = 100;
+u_int16 GC_TICK_TIME = 200;
 
 // command codes
 u_int8 GC_START		= 'g';

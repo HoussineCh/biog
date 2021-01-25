@@ -9,7 +9,7 @@
 
 
 
-// Signature of the function Init()
-u_int8 Update(u_int8 p_cmd);
+// Signature of the function Update()
+u_int8 Update(e_State, u_int8);
 
 #endif // !UPDATE

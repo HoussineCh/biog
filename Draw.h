@@ -8,7 +8,7 @@
 #include "Global_Variables.h"
 
 
-// Signature of the function Init()
-void Draw(e_State, uint8_t);
+// Signature of the function Draw()
+void Draw(e_State, u_int8);
 
 #endif // !DRAW

@@ -20,7 +20,8 @@
 /*NONE*/
 
 // Definition of the function Input()
-u_int8 Input() {
+u_int8 Input(u_int8& p_prev_in) {
+	//p_prev_in = 0;
 	if (_kbhit() != 0) {
 		return _getch();
 	}
