@@ -1,10 +1,10 @@
 /*
 	File: Input.cpp
 	Author: H.CHERGUI
-	First verion: 1.0
-	First verion date: 22/01/2021
-	current verion: 1.0
-	current verion date: 22/01/2021
+	First version: 1.0
+	First version date: 22/01/2021
+	current version: 1.0
+	current version date: 22/01/2021
 */
 
 // System files includes

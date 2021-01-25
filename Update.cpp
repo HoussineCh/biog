@@ -1,10 +1,10 @@
 /*
 	File: Update.cpp
 	Author: H.CHERGUI
-	First verion: 1.0
-	First verion date: 22/01/2021
-	current verion: 1.0
-	current verion date: 22/01/2021
+	First version: 1.0
+	First version date: 22/01/2021
+	current verson: 2.0
+	current version date: 24/01/2021
 */
 
 // System files includes
@@ -62,10 +62,11 @@ u_int8 Update(u_int8 p_cmd) {
 
 	// reconstruction of the window
 	for (u_int8 i = 0; i < GC_N; i++) {
-		if (i == 0 || i == GC_N - 1)
+		if (i == 0 || i == GC_N - 1) {
 			for (u_int8 j = 0; j < GC_M; j++) {
 				g_graph[i][j] = '#';
 			}
+		}
 		else {
 			g_graph[i][0] = '#';
 			for (u_int8 j = 1; j < GC_M - 1; j++) {
@@ -114,13 +115,13 @@ u_int8 Update(u_int8 p_cmd) {
 
 	// game over - cause: wall hitting - code : 68 
 	if (g_snake.first <= 0 || g_snake.first >= GC_N - 1 || g_snake.second <= 0 || g_snake.second >= GC_M - 1) {
-		return 68;
+		return GC_WALL_HIT;
 	}
 
 	// game over - cause: stepping on yee self - code : 69
 	for (u_int8 i = 0; i < g_tail_length; i++) {
 		if (g_snake == g_tail[i]) {
-			return 69;
+			return GC_SELF_INTERSECT;
 		}
 	}
 

@@ -1,10 +1,10 @@
 /*
 	File: Init.cpp
 	Author: H.CHERGUI
-	First verion: 1.0
-	First verion date: 22/01/2021
-	current verion: 1.0
-	current verion date: 22/01/2021
+	First version: 1.0
+	First version date: 22/01/2021
+	current version: 2.0
+	current version date: 24/01/2021
 */
 
 // System files includes
@@ -27,7 +27,7 @@ std::vector<std::vector<u_int8>> g_graph(GC_N, l);
 u_int16 g_score;
 
 // the game's hi-score
-u_int16 g_hi_score = 0;
+u_int16 g_hi_score = GC_HI_SCORE;
 
 // pairs of cordinates for snake
 std::pair<u_int8, u_int8> g_snake;
@@ -63,27 +63,28 @@ u_int16 GC_TICK_TIME = 100;
 u_int8 GC_START		= 'g';
 u_int8 GC_RUNNING	= 15 ;
 u_int8 GC_PAUSE		= 'p';
+u_int8 GC_PAUSE2	= 27 ;
 u_int8 GC_RESTART	= 'r';
-u_int8 GC_GAME_OVER = 101;
 u_int8 GC_SELF_INTERSECT = 69;
 u_int8 GC_WALL_HIT	= 68 ;
+u_int8 GC_NO_CMD	= 70 ;
+std::string GC_GAME_NAME_S = "HOUSSINE\'S GAME!";
+std::string GC_PAUSE_MSG_S = "PAUSE!";
+std::string GC_START_MSG_S = "press \'g\' to start";
+std::string GC_HI_SCORE_S = "Hi-score: ";
 
 
 // Definition of the function Init()
-void Init(u_int8 p_tick, u_int8 p_init_score, u_int8 p_lenght, e_Direction p_direction) {
+void Init(u_int8 p_tick, u_int8 p_init_score, u_int8 p_init_lenght, e_Direction p_direction) {
 
 	// Initializing tick time
 	g_tick = p_tick;
 
 	// Initializing score to p_init_score
-	g_score = 0;
+	g_score = p_init_score;
 
-	// Initializing hi-score to GC_HI_SCORE
-	if (g_hi_score < GC_HI_SCORE)
-		g_hi_score = GC_HI_SCORE;
-	
 	// Initializing lenght to p_lenght
-	g_tail_length = p_lenght;
+	g_tail_length = p_init_lenght;
 
 	// Initializing fewd position
 	g_fewd = std::make_pair(rand() % (GC_N - 5) + 2, rand() % (GC_M - 5) + 2);
@@ -92,8 +93,16 @@ void Init(u_int8 p_tick, u_int8 p_init_score, u_int8 p_lenght, e_Direction p_dir
 	g_snake = std::make_pair(time(0) % (GC_N / 3) + (GC_N / 3), time(0) % (GC_M / 3) + (GC_M / 3));
 
 	// Initializing the snake's tail
-	for (int i = 0; i < g_tail_length; i++) {
-		g_tail[i] = std::make_pair(g_snake.first + i+1, g_snake.second);
+
+	if (p_direction == DOWN) {
+		for (int i = 0; i < g_tail_length; i++) {
+			g_tail[i] = std::make_pair(g_snake.first - i - 1, g_snake.second);
+		}
+	}
+	else {
+		for (int i = 0; i < g_tail_length; i++) {
+			g_tail[i] = std::make_pair(g_snake.first + i + 1, g_snake.second);
+		}
 	}
 
 	// Initializing snake direction

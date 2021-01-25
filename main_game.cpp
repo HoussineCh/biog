@@ -1,10 +1,10 @@
 /*
 *	File: main_game.cpp
 *	Author: H.CHERGUI
-*	First verion: 1.0
-*	First verion date: 22/01/2021
+*	First version: 1.0
+*	First version date: 22/01/2021
 *	current version: 2.0
-*	current version date: 23/01/2021
+*	current version date: 24/01/2021
 */
 
 // System files includes
@@ -12,7 +12,6 @@
 #include <Windows.h>
 
 // User defined files includes
-//#include "State_Engine.h"
 #include "Init.h"
 #include "Input.h"
 #include "Update.h"
@@ -31,56 +30,58 @@ int main_game() {
 
 	// System loop
 	while ( true ) {
+		l_in_cmd = 0;
 
 		// Start screen
-		if(l_state == E_START){
+		if (l_state == E_START) {
 			l_in_cmd = Input();
-			Draw(E_START);
-
+			Draw(E_START, GC_NO_CMD);
 			// Checking if a start is requested
 			if (l_in_cmd == GC_START) {
 				// Initializing
-				Init(GC_TICK_TIME, 0, 3, UP);
+				Init(GC_TICK_TIME, 0, 5, UP);
 
-				// Setting the state to running
+				// Run the game
 				l_state = E_RUNNING;
 			}
+
+			// Extra waiting to compensate the reduced cpu load
+			Sleep(GC_TICK_TIME);
 		}
 		
 		// Running state
 		else if(l_state == E_RUNNING){
 			l_in_cmd = Input();
 			l_ud_cmd = Update(l_in_cmd);
-			Draw(E_RUNNING);
+			Draw(E_RUNNING, GC_NO_CMD);
 
 			// Checking if the game is over
-			if (l_ud_cmd == GC_GAME_OVER) {
-				// Pausing the game
-				l_state = E_RUNNING;
+			if (l_ud_cmd == GC_WALL_HIT || l_ud_cmd == GC_SELF_INTERSECT) {
+				// Put an end to the game
+				l_state = E_GAME_OVER;
 			}
 
 			// Checking if a pause is requested
-			else if (l_in_cmd == GC_PAUSE) {
-				// Pausing the game
+			else if (l_in_cmd == GC_PAUSE || l_in_cmd == GC_PAUSE2) {
+				// Pause the game
 				l_state = E_PAUSE;
-			}
-			
+			}			
 		}
 		
 		// Pause state
 		else if(l_state == E_PAUSE){
 			l_in_cmd = Input();
-			Draw(E_PAUSE);
+			Draw(E_PAUSE, GC_NO_CMD);
 
 			// Checking whether the game is resumed
-			if (l_in_cmd == GC_PAUSE) {
-				// Setting the state to running
+			if (l_in_cmd == GC_PAUSE || l_in_cmd == GC_PAUSE2) {
+				// Resume the game
 				l_state = E_RUNNING;
 			}
-
+			
 			// Checking if a restart is requested
 			else if (l_in_cmd == GC_RESTART) {
-				// Return to the main menu
+				// Back to main menu
 				l_state = E_START;
 			}
 		}
@@ -88,11 +89,11 @@ int main_game() {
 		// Game over state
 		else if(l_state == E_GAME_OVER){
 			l_in_cmd = Input();
-			Draw(E_GAME_OVER);
+			Draw(E_GAME_OVER, l_ud_cmd);
 
 			// Checking if a restart is requested
 			if (l_in_cmd == GC_RESTART) {
-				// Return to the main menu
+				// Back to main menu
 				l_state = E_START;
 			}
 		}	
