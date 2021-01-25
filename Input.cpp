@@ -21,7 +21,8 @@
 
 // Definition of the function Input()
 u_int8 Input() {
-	//Sleep(g_tick * 5);
+
+	// Get input if keyboard is pressed
 	if (_kbhit() != 0) {
 		return _getch();
 	}

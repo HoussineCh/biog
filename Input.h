@@ -2,7 +2,7 @@
 #define INPUT
 
 // System files includes
-//#include <Windows.h>
+/*NONE*/
 
 // User defined files includes
 /*NONE*/

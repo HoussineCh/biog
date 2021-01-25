@@ -3,8 +3,8 @@
 	Author: H.CHERGUI
 	First version: 1.0
 	First version date: 22/01/2021
-	current verson: 2.0
-	current version date: 24/01/2021
+	current verson: 2.5
+	current version date: 25/01/2021
 */
 
 // System files includes
@@ -23,7 +23,7 @@
 // Definition of the function Update()
 u_int8 Update(e_State p_state, u_int8 p_cmd) {
 
-	if (p_state == E_RUNNING) {
+	if (p_state == e_State::E_RUNNING) {
 		// updating the direction with its speed
 		g_tick = GC_TICK_TIME;
 		switch (p_cmd) {

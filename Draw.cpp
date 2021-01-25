@@ -3,7 +3,7 @@
 	Author:	H.CHERGUI
 	First version: 1.0
 	First version date: 22/01/2021
-	current version: 2.1
+	current version: 2.5
 	current version date: 25/01/2021
 */
 
@@ -20,15 +20,24 @@
 /*Global Constants*/
 /*NONE*/
 
+#include <Windows.h>
+
 
 // Drawing the content on the screen
-void Draw(e_State p_state, u_int8 p_cmd) {
+void Draw(e_State p_state, u_int8 p_ud_cmd) {
 	
+	// Local variables
+	static uint8_t l_ud_cmd = GC_RUNNING;
+	
+	if (p_ud_cmd == GC_WALL_HIT || p_ud_cmd == GC_SELF_INTERSECT) {
+		l_ud_cmd = p_ud_cmd;
+	}
+
 	// Clear the screen
 	system("cls");
 
 	// Display the start screen
-	if (p_state == E_START) {
+	if (p_state == e_State::E_START) {
 
 		// Contructing the sides
 		for (u_int8 i = 0; i < GC_N; i++) {
@@ -80,7 +89,7 @@ void Draw(e_State p_state, u_int8 p_cmd) {
 	}else
 	
 	// Run the game
-	if (p_state == E_RUNNING) {
+	if (p_state == e_State::E_RUNNING) {
 		std::cout << "Score: " << g_score << "\t\t\t\t\t\t\t\t\tHi-Score: " << g_hi_score << std::endl;
 		for (u_int8 i = 0; i < GC_N; i++) {
 			for (u_int8 j = 0; j < GC_M; j++) {
@@ -92,7 +101,7 @@ void Draw(e_State p_state, u_int8 p_cmd) {
 	else
 	
 	// Pause the game
-	if (p_state == E_PAUSE) {
+	if (p_state == e_State::E_PAUSE) {
 		std::cout << "Score: " << g_score << "\t\t\t\t\t\t\t\t\tHi-Score: " << g_hi_score << std::endl;
 		
 		for (u_int8 j = GC_M / 2 - 3; j < GC_M / 2 + 3; j++) {
@@ -108,16 +117,16 @@ void Draw(e_State p_state, u_int8 p_cmd) {
 	else
 		
 	// Launch the game-over screen
-	if (p_state == E_GAME_OVER) {
+	if (p_state == e_State::E_GAME_OVER) {
 		std::cout << "\n-------------------------------------------------------------------------------\n";
 		std::cout << "---------------------------------  GAME OVER  ---------------------------------\n";
 		std::cout << "-------------------------------------------------------------------------------\n\n";
 		std::cout << ((g_score > GC_HI_SCORE) ? ("New hi-score: " + std::to_string(g_score) + " !") : "Score: " + std::to_string(g_score)) << std::endl;
 
-		if (p_cmd == GC_WALL_HIT) {
+		if (l_ud_cmd == GC_WALL_HIT) {
 			std::cout << "\n\"Wall was hit!!\"\n\n";
 		}
-		else if (p_cmd == GC_SELF_INTERSECT) {
+		else if (l_ud_cmd == GC_SELF_INTERSECT) {
 			std::cout << "\n\"Ate your self!!\"\n\n";
 		}
 		else {

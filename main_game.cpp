@@ -8,8 +8,7 @@
 */
 
 // System files includes
-#include <iostream>
-#include <Windows.h>
+/*NONE*/
 
 // User defined files includes
 #include "State_Engine.h"
@@ -21,16 +20,16 @@
 int main_game() {
 	
 	// Local variables
-	u_int8 l_in_cmd = 49;
+	u_int8 l_in_cmd = 0;
 	u_int8 l_ud_cmd = 0;
-	e_State l_state = E_START;
+	e_State l_state = e_State::E_START;
 
 	// System loop
 	while ( true ) {
 
 		// Determining the current state
 		l_state = State_Engine(l_state, l_in_cmd, l_ud_cmd);
-
+		
 		// Running the step
 		l_in_cmd = 0;
 		l_in_cmd = Input();
@@ -38,9 +37,8 @@ int main_game() {
 		Draw(l_state, l_ud_cmd);
 
 		// System delay
-		Sleep(g_tick*5);
+		Sleep(g_tick);
 	}
 	
 	return 55;
 }
-

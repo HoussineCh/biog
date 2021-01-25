@@ -7,10 +7,11 @@
 #include "Init.h"
 
 // System files includes
-/*None*/
+/*NONE*/
 
 // User defined files includes
-/*None*/
+/*NONE*/
+
 
 // Signature of the function State_Engine()
 e_State State_Engine(e_State, u_int8, u_int8);

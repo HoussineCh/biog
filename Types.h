@@ -35,7 +35,7 @@ enum e_Direction {
 
 // define states enumeration
 
-enum e_State {
+enum class e_State {
 	E_START ,
 	E_RUNNING ,
 	E_PAUSE ,
