@@ -3,8 +3,8 @@
 *	Author: H.CHERGUI
 *	First version: 1.0
 *	First version date: 22/01/2021
-*	current version: 2.0
-*	current version date: 24/01/2021
+*	current version: 2.1
+*	current version date: 25/01/2021
 */
 
 // System files includes
