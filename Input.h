@@ -2,7 +2,7 @@
 #define INPUT
 
 // System files includes
-/*NONE*/
+//#include <Windows.h>
 
 // User defined files includes
 /*NONE*/
@@ -11,6 +11,6 @@
 #include "Global_Variables.h"
 
 // Signature of the function Init()
-u_int8 Input(u_int8&);
+u_int8 Input();
 
 #endif // !INPUT

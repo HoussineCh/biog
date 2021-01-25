@@ -22,10 +22,10 @@
 // Definition of the function State_Engine()
 
 e_State State_Engine(e_State p_current_state, u_int8 p_in_cmd, u_int8 p_ud_cmd) {
-	
+	std::cout << ">>dbg::SE:: " << p_in_cmd << std::endl;
 	// Start screen
 	if (p_current_state == E_START) {
-
+		std::cout << ">>dbg::SE:: IF : START" << std::endl;
 		// Checking if a start is requested
 		if (p_in_cmd == GC_START) {
 			// Initializing
@@ -41,6 +41,8 @@ e_State State_Engine(e_State p_current_state, u_int8 p_in_cmd, u_int8 p_ud_cmd) 
 
 	// Running state
 	else if (p_current_state == E_RUNNING) {
+		std::cout << ">>dbg::SE:: IF : RUNNING" << std::endl;
+		Sleep(GC_TICK_TIME);
 
 		// Checking if the game is over
 		if (p_ud_cmd == GC_WALL_HIT || p_ud_cmd == GC_SELF_INTERSECT) {
@@ -57,6 +59,8 @@ e_State State_Engine(e_State p_current_state, u_int8 p_in_cmd, u_int8 p_ud_cmd) 
 
 	// Pause state
 	else if (p_current_state == E_PAUSE) {
+		std::cout << ">>dbg::SE:: IF : PAUSE" << std::endl;
+		Sleep(GC_TICK_TIME);
 
 		// Checking whether the game is resumed
 		if (p_in_cmd == GC_PAUSE || p_in_cmd == GC_PAUSE2) {
@@ -73,6 +77,8 @@ e_State State_Engine(e_State p_current_state, u_int8 p_in_cmd, u_int8 p_ud_cmd) 
 
 	// Game over state
 	else if (p_current_state == E_GAME_OVER) {
+		std::cout << ">>dbg::SE:: IF : GAME_OVER" << std::endl;
+		Sleep(GC_TICK_TIME);
 
 		// Checking if a restart is requested
 		if (p_in_cmd == GC_RESTART) {

@@ -20,8 +20,8 @@
 /*NONE*/
 
 // Definition of the function Input()
-u_int8 Input(u_int8& p_prev_in) {
-	//p_prev_in = 0;
+u_int8 Input() {
+	//Sleep(g_tick * 5);
 	if (_kbhit() != 0) {
 		return _getch();
 	}

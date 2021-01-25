@@ -21,7 +21,7 @@
 int main_game() {
 	
 	// Local variables
-	u_int8 l_in_cmd = 0;
+	u_int8 l_in_cmd = 49;
 	u_int8 l_ud_cmd = 0;
 	e_State l_state = E_START;
 
@@ -32,12 +32,13 @@ int main_game() {
 		l_state = State_Engine(l_state, l_in_cmd, l_ud_cmd);
 
 		// Running the step
-		l_in_cmd = Input(l_in_cmd);
+		l_in_cmd = 0;
+		l_in_cmd = Input();
 		l_ud_cmd = Update(l_state, l_in_cmd);
 		Draw(l_state, l_ud_cmd);
 
 		// System delay
-		Sleep(g_tick);
+		Sleep(g_tick*5);
 	}
 	
 	return 55;
