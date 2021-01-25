@@ -20,8 +20,6 @@
 /*Global Constants*/
 /*NONE*/
 
-#include <Windows.h>
-
 
 // Drawing the content on the screen
 void Draw(e_State p_state, u_int8 p_ud_cmd) {
@@ -29,6 +27,7 @@ void Draw(e_State p_state, u_int8 p_ud_cmd) {
 	// Local variables
 	static uint8_t l_ud_cmd = GC_RUNNING;
 	
+	// Memorize the cause of game over
 	if (p_ud_cmd == GC_WALL_HIT || p_ud_cmd == GC_SELF_INTERSECT) {
 		l_ud_cmd = p_ud_cmd;
 	}
@@ -90,7 +89,10 @@ void Draw(e_State p_state, u_int8 p_ud_cmd) {
 	
 	// Run the game
 	if (p_state == e_State::E_RUNNING) {
-		std::cout << "Score: " << g_score << "\t\t\t\t\t\t\t\t\tHi-Score: " << g_hi_score << std::endl;
+		std::cout << "Score: " << g_score;
+		for (uint8_t i=0; i<(GC_M - 17 - std::to_string(g_score).length() - std::to_string(g_hi_score).length()); i++)
+			std::cout << ' ';
+		std::cout << "Hi-Score: " << g_hi_score << std::endl;
 		for (u_int8 i = 0; i < GC_N; i++) {
 			for (u_int8 j = 0; j < GC_M; j++) {
 				std::cout << g_graph[i][j];
@@ -102,8 +104,11 @@ void Draw(e_State p_state, u_int8 p_ud_cmd) {
 	
 	// Pause the game
 	if (p_state == e_State::E_PAUSE) {
-		std::cout << "Score: " << g_score << "\t\t\t\t\t\t\t\t\tHi-Score: " << g_hi_score << std::endl;
-		
+		std::cout << "Score: " << g_score;
+		for (uint8_t i = 0; i < (GC_M - 17 - std::to_string(g_score).length() - std::to_string(g_hi_score).length()); i++)
+			std::cout << ' ';
+		std::cout << "Hi-Score: " << g_hi_score << std::endl;
+
 		for (u_int8 j = GC_M / 2 - 3; j < GC_M / 2 + 3; j++) {
 			g_graph[GC_N / 2][j] = GC_PAUSE_MSG_S[j - GC_M / 2 + 3];
 		}

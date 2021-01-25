@@ -40,7 +40,7 @@ e_State State_Engine(e_State p_current_state, u_int8 p_in_cmd, u_int8 p_ud_cmd) 
 		}
 
 		// Extra waiting to compensate the reduced cpu load
-		Sleep(GC_TICK_TIME);
+		Sleep(g_tick);
 	}
 
 	// Running state

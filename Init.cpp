@@ -16,32 +16,32 @@
 
 /*Global Variables definition*/
 
-// the time of execution
+// The time of execution
 u_int16 g_tick;
 
-// the game window
+// The game window
 std::vector<u_int8> l(GC_M);
 std::vector<std::vector<u_int8>> g_graph(GC_N, l);
 
-// the game score
+// The game score
 u_int16 g_score;
 
-// the game's hi-score
+// The game's hi-score
 u_int16 g_hi_score = GC_HI_SCORE;
 
-// pairs of cordinates for snake
+// Pairs of cordinates for snake
 std::pair<u_int8, u_int8> g_snake;
 
-// pairs of cordinates for snake's tail
+// Pairs of cordinates for snake's tail
 std::vector<std::pair<u_int8, u_int8>> g_tail(GC_MAX_LENGTH);
 
-// current length of the tail
+// Current length of the tail
 u_int16 g_tail_length;
 
-// pairs of cordinates for fewd
+// Pairs of cordinates for fewd
 std::pair<u_int8, u_int8> g_fewd;
 
-// direction of da snaek
+// Direction of da snaek
 u_int8 g_direction;
 
 
@@ -50,16 +50,16 @@ u_int8 g_direction;
 // Highest score
 u_int16 GC_HI_SCORE = 30;
 
-// dimensions of the game window
-u_int16 GC_N = 27, GC_M = 100;
+// Dimensions of the game window
+u_int16 GC_N = 25, GC_M = 80;
 
-// max length of snake
+// Max length of snake
 u_int16 GC_MAX_LENGTH = 1000;
 
-// tick-time
+// Tick-time
 u_int16 GC_TICK_TIME = 200;
 
-// command codes
+// Command codes
 u_int8 GC_START		= 'g';
 u_int8 GC_RUNNING	= 15 ;
 u_int8 GC_PAUSE		= 'p';
@@ -67,11 +67,12 @@ u_int8 GC_PAUSE2	= 27 ;
 u_int8 GC_RESTART	= 'r';
 u_int8 GC_SELF_INTERSECT = 69;
 u_int8 GC_WALL_HIT	= 68 ;
-u_int8 GC_NO_CMD	= 70 ;
-std::string GC_GAME_NAME_S = "HOUSSINE\'S GAME!";
-std::string GC_PAUSE_MSG_S = "PAUSE!";
-std::string GC_START_MSG_S = "press \'g\' to start";
-std::string GC_HI_SCORE_S = "Hi-score: ";
+
+// Const messages
+const std::string GC_GAME_NAME_S = "HOUSSINE\'S GAME!";
+const std::string GC_PAUSE_MSG_S = "PAUSE!";
+const std::string GC_START_MSG_S = "press \'g\' to start";
+const std::string GC_HI_SCORE_S = "Hi-score: ";
 
 
 // Definition of the function Init()

@@ -33,8 +33,7 @@ enum e_Direction {
 	LEFT = 'q'
 };
 
-// define states enumeration
-
+// define states enumeration class
 enum class e_State {
 	E_START ,
 	E_RUNNING ,

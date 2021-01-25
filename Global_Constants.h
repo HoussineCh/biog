@@ -29,12 +29,11 @@ extern u_int8 GC_PAUSE2			 ;
 extern u_int8 GC_RESTART		 ;
 extern u_int8 GC_SELF_INTERSECT  ;
 extern u_int8 GC_WALL_HIT		 ;
-extern u_int8 GC_NO_CMD			 ;
 
 // Start page messages
-extern std::string GC_GAME_NAME_S;
-extern std::string GC_START_MSG_S;
-extern std::string GC_PAUSE_MSG_S;
-extern std::string GC_HI_SCORE_S ;
+extern const std::string GC_GAME_NAME_S;
+extern const std::string GC_START_MSG_S;
+extern const std::string GC_PAUSE_MSG_S;
+extern const std::string GC_HI_SCORE_S ;
 
 #endif // !GLOBAL_CONSTANTS
