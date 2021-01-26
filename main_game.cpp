@@ -17,7 +17,7 @@
 #include "Update.h"
 #include "Draw.h"
 
-int main_game() {
+u_int8 main_game() {
 	
 	// Local variables
 	u_int8 l_in_cmd = 0;
