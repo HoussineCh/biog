@@ -39,6 +39,5 @@ public:
 	void set_tail(std::pair<s_int8, s_int8>, uint8_t);
 	void set_tail_length(u_int16);
 	void set_direction(e_Direction);
-
 };
 

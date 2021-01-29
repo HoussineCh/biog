@@ -1,10 +1,10 @@
 /*
 	File: Snake.cpp
 	Author: H.CHERGUI
-	First version: 2.6
-	First version date: xx/yy/2021
 	current version: 2.6
-	current version date: xx/yy/2021
+	current version date: 29/01/2021
+	current version: 2.6
+	current version date: 29/01/2021
 */
 
 // System files includes

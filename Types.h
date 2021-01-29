@@ -7,6 +7,7 @@
 // User defined files includes
 /*None*/
 
+
 // Defining types
 #define s_int8 char
 #define s_int16 short
@@ -31,6 +32,12 @@ enum class e_State {
 	E_RUNNING ,
 	E_PAUSE ,
 	E_GAME_OVER
+};
+
+// Game status
+struct s_Game_info {
+	e_State state;
+	uint8_t code;
 };
 
 // redefining main just to be bada$$

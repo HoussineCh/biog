@@ -3,8 +3,8 @@
 	Author: H.CHERGUI
 	First version: 1.0
 	First version date: 22/01/2021
-	current version: 1.0
-	current version date: 22/01/2021
+	current version: 2.6
+	current version date: 29/01/2021
 */
 
 // System files includes
@@ -25,6 +25,9 @@ u_int8 Input() {
 	// Get input if keyboard is pressed
 	if (_kbhit() != 0) {
 		return _getch();
+	}
+	else {
+		return 0;
 	}
 }
 

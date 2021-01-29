@@ -14,5 +14,5 @@
 
 
 // Signature of the function State_Engine()
-e_State State_Engine(e_State, u_int8, u_int8);
+e_State State_Engine(s_Game_info, u_int8);
 

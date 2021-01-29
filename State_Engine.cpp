@@ -3,8 +3,8 @@
 	Author: H.CHERGUI
 	First version: 2.5
 	First version date: 25/01/2021
-	Current version: 2.5
-	Current version date: 25/01/2021
+	Current version: 2.6
+	Current version date: 29/01/2021
 */
 
 // System files includes
@@ -21,13 +21,13 @@
 
 // Definition of the function State_Engine()
 
-e_State State_Engine(e_State p_current_state, u_int8 p_in_cmd, u_int8 p_ud_cmd) {
+e_State State_Engine(s_Game_info p_current_state, u_int8 p_in_cmd) {
 
 	// Local variables
-	e_State l_current_state = p_current_state;
+	e_State l_current_state = p_current_state.state;
 
 	// Start screen
-	if (p_current_state == e_State::E_START) {
+	if (p_current_state.state == e_State::E_START) {
 		
 		// Initializing
 		Init(GC_TICK_TIME, 0, 5, e_Direction::UP);
@@ -44,10 +44,10 @@ e_State State_Engine(e_State p_current_state, u_int8 p_in_cmd, u_int8 p_ud_cmd) 
 	}
 
 	// Running state
-	else if (p_current_state == e_State::E_RUNNING) {
+	else if (p_current_state.state == e_State::E_RUNNING) {
 
 		// Checking if the game is over
-		if (p_ud_cmd == GC_WALL_HIT || p_ud_cmd == GC_SELF_INTERSECT) {
+		if (p_current_state.code == GC_WALL_HIT || p_current_state.code == GC_SELF_INTERSECT) {
 			// Put an end to the game
 			l_current_state = e_State::E_GAME_OVER;
 		}
@@ -60,7 +60,7 @@ e_State State_Engine(e_State p_current_state, u_int8 p_in_cmd, u_int8 p_ud_cmd) 
 	}
 
 	// Pause state
-	else if (p_current_state == e_State::E_PAUSE) {
+	else if (p_current_state.state == e_State::E_PAUSE) {
 		
 		// Checking whether the game is resumed
 		if (p_in_cmd == GC_PAUSE || p_in_cmd == GC_PAUSE2) {
@@ -76,7 +76,7 @@ e_State State_Engine(e_State p_current_state, u_int8 p_in_cmd, u_int8 p_ud_cmd) 
 	}
 
 	// Game over state
-	else if (p_current_state == e_State::E_GAME_OVER) {
+	else if (p_current_state.state == e_State::E_GAME_OVER) {
 
 		// Checking if a restart is requested
 		if (p_in_cmd == GC_RESTART) {

@@ -9,6 +9,6 @@
 
 
 // Signature of the function Draw()
-void Draw(e_State, u_int8);
+void Draw(s_Game_info);
 
 #endif // !DRAW
