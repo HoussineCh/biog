@@ -30,7 +30,7 @@ extern u_int8 GC_RESTART		 ;
 extern u_int8 GC_SELF_INTERSECT  ;
 extern u_int8 GC_WALL_HIT		 ;
 
-// Start page messages
+// Const messages
 extern const std::string GC_GAME_NAME_S;
 extern const std::string GC_START_MSG_S;
 extern const std::string GC_PAUSE_MSG_S;

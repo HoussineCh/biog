@@ -7,33 +7,25 @@
 // User defined files includes
 /*None*/
 
-// define signed types
+// Defining types
 #define s_int8 char
-
 #define s_int16 short
-
-#define s_int32 int
-
+#define s_int32 long
 #define s_int64 long long
-
-// define unsigned types
 #define u_int8 unsigned char
-
 #define u_int16 unsigned short
-
-#define u_int32 unsigned int
-
+#define u_int32 unsigned long
 #define u_int64 unsigned long long
 
-// define direction enumeration
-enum e_Direction {
+// Defining direction enumeration
+enum class e_Direction {
 	UP = 'z',
 	DOWN = 's',
 	RIGHT = 'd',
 	LEFT = 'q'
 };
 
-// define states enumeration class
+// Defining states enumeration class
 enum class e_State {
 	E_START ,
 	E_RUNNING ,

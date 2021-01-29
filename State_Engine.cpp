@@ -30,7 +30,7 @@ e_State State_Engine(e_State p_current_state, u_int8 p_in_cmd, u_int8 p_ud_cmd) 
 	if (p_current_state == e_State::E_START) {
 		
 		// Initializing
-		Init(GC_TICK_TIME, 0, 5, UP);
+		Init(GC_TICK_TIME, 0, 5, e_Direction::UP);
 
 		// Checking if a start is requested
 		if (p_in_cmd == GC_START) {

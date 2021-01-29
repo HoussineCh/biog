@@ -1,16 +1,12 @@
-#ifndef INPUT
-#define INPUT
+#pragma once
 
 // System files includes
-/*NONE*/
+#include <conio.h>
 
 // User defined files includes
-/*NONE*/
-
-#include <conio.h>
 #include "Global_Variables.h"
+
 
 // Signature of the function Init()
 u_int8 Input();
 
-#endif // !INPUT

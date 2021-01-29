@@ -143,6 +143,7 @@
     <ClCompile Include="Init.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main_game.cpp" />
+    <ClCompile Include="Snake.cpp" />
     <ClCompile Include="State_Engine.cpp" />
     <ClCompile Include="Update.cpp" />
   </ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="Global_Variables.h" />
     <ClInclude Include="Global_Constants.h" />
     <ClInclude Include="Init.h" />
+    <ClInclude Include="Snake.h" />
     <ClInclude Include="State_Engine.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Update.h" />

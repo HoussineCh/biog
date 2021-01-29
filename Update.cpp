@@ -19,43 +19,47 @@
 /*Global Constants*/
 /*NONE*/
 
+// other funcs
+void ud_direction();
+void ud_construct_win();
+void ud_spawn_artefacts();
 
 // Definition of the function Update()
-u_int8 Update(e_State p_state, u_int8 p_cmd) {
+u_int8 Update(e_State p_state, e_Direction p_cmd) {
 
 	if (p_state == e_State::E_RUNNING) {
 		// updating the direction with its speed
 		g_tick = GC_TICK_TIME;
 		switch (p_cmd) {
-		case UP:
-			if (g_direction == LEFT || g_direction == RIGHT) {
-				g_direction = UP;
+		case e_Direction::UP:
+			if (g_snake.get_direction() == e_Direction::LEFT || g_snake.get_direction() == e_Direction::RIGHT) {
+				g_snake.set_direction(e_Direction::UP);
 			}
-			else if (g_direction == p_cmd) {
+			else if (g_snake.get_direction() == p_cmd) {
 				g_tick = GC_TICK_TIME / 10;
 			}
 			break;
-		case DOWN:
-			if (g_direction == LEFT || g_direction == RIGHT) {
-				g_direction = DOWN;
+		case e_Direction::DOWN:
+			if (g_snake.get_direction() == e_Direction::LEFT || g_snake.get_direction() == e_Direction::RIGHT) {
+				g_snake.set_direction(e_Direction::DOWN);
 			}
-			else if (g_direction == p_cmd) {
+			else if (g_snake.get_direction() == p_cmd) {
 				g_tick = GC_TICK_TIME / 10;
 			}
 			break;
-		case RIGHT:
-			if (g_direction == UP || g_direction == DOWN) {
-				g_direction = RIGHT;
+		case e_Direction::RIGHT:
+			if (g_snake.get_direction() == e_Direction::UP || g_snake.get_direction() == e_Direction::DOWN) {
+				g_snake.set_direction(e_Direction::RIGHT);
 			}
-			else if (g_direction == p_cmd) {
+			else if (g_snake.get_direction() == p_cmd) {
 				g_tick = GC_TICK_TIME / 10;
 			}
 			break;
-		case LEFT:
-			if (g_direction == UP || g_direction == DOWN) {
-				g_direction = LEFT;
+		case e_Direction::LEFT:
+			if (g_snake.get_direction() == e_Direction::UP || g_snake.get_direction() == e_Direction::DOWN) {
+				g_snake.set_direction(e_Direction::LEFT);
 			}
-			else if (g_direction == p_cmd) {
+			else if (g_snake.get_direction() == p_cmd) {
 				g_tick = GC_TICK_TIME / 10;
 			}
 			break;
@@ -77,51 +81,53 @@ u_int8 Update(e_State p_state, u_int8 p_cmd) {
 			}
 		}
 
-		// determining the fewd cordinates and increasing score after the snake has filled its tummy
-		if (g_fewd.first == g_snake.first && g_fewd.second == g_snake.second) {
+		// Updating fewd cordinates and increasing score after the snake has filled its tummy
+		if (g_fewd.first == g_snake.get_coordinates().first && g_fewd.second == g_snake.get_coordinates().second) {
 			g_fewd.first = rand() % (GC_N - 2) + 1;
 			g_fewd.second = rand() % (GC_M - 2) + 1;
-			g_tail_length++;	// gulp... ahhhhh!
+			g_snake.tail_length_inc();	// gulp... ahhhhh!
 			g_score += 10;
 		}
 
-		// determining the tail of da snaek
-		std::pair<int, int> l_prev = std::make_pair(g_tail[0].first, g_tail[0].second);
+		// Updating the tail of da snaek
 		std::pair<int, int> l_prev_current;
-		g_tail[0] = std::make_pair(g_snake.first, g_snake.second);
-		for (int i = 1; i < g_tail_length; i++) {
-			l_prev_current = g_tail[i];
-			g_tail[i] = l_prev;
-			l_prev = l_prev_current;
+		for (int i = 1; i < g_snake.get_tail_length(); i++) {
+			l_prev_current = g_snake.get_tail()[i];
+			g_snake.set_tail(g_snake.get_tail()[0], i);
+			g_snake.set_tail(l_prev_current, 0);
 		}
+		g_snake.set_tail(g_snake.get_coordinates(), 0);
+		
 
 		// determining the snaek's cordinates
-		switch (g_direction)
+		switch (g_snake.get_direction())
 		{
-		case UP:
-			g_snake.first--;
+		case e_Direction::UP:
+			g_snake.set_coordinates(std::make_pair(g_snake.get_coordinates().first - 1, g_snake.get_coordinates().second));
 			break;
-		case DOWN:
-			g_snake.first++;
+		case e_Direction::DOWN:
+			g_snake.set_coordinates(std::make_pair(g_snake.get_coordinates().first + 1, g_snake.get_coordinates().second));
 			break;
-		case RIGHT:
-			g_snake.second++;
+		case e_Direction::RIGHT:
+			g_snake.set_coordinates(std::make_pair(g_snake.get_coordinates().first, g_snake.get_coordinates().second + 1));
 			break;
-		case LEFT:
-			g_snake.second--;
+		case e_Direction::LEFT:
+			g_snake.set_coordinates(std::make_pair(g_snake.get_coordinates().first, g_snake.get_coordinates().second - 1));
 			break;
 		default:
 			break;
 		}
 
 		// game over - cause: wall hitting - code : GC_WALL_HIT 
-		if (g_snake.first <= 0 || g_snake.first >= GC_N - 1 || g_snake.second <= 0 || g_snake.second >= GC_M - 1) {
+		if (g_snake.get_coordinates().first <= 0 || g_snake.get_coordinates().first >= GC_N - 1 || \
+			g_snake.get_coordinates().second <= 0 || g_snake.get_coordinates().second >= GC_M - 1)
+		{
 			return GC_WALL_HIT;
 		}
 
 		// game over - cause: stepping on yee self - code : GC_SELF_INTERSECT
-		for (u_int8 i = 0; i < g_tail_length; i++) {
-			if (g_snake == g_tail[i]) {
+		for (u_int8 i = 0; i < g_snake.get_tail_length(); i++) {
+			if (g_snake.get_coordinates() == g_snake.get_tail()[i]) {
 				return GC_SELF_INTERSECT;
 			}
 		}
@@ -130,9 +136,9 @@ u_int8 Update(e_State p_state, u_int8 p_cmd) {
 		g_graph[g_fewd.first][g_fewd.second] = 'X';
 
 		// spawning the snaek and its tail
-		g_graph[g_snake.first][g_snake.second] = 'S';
-		for (u_int8 i = 0; i < g_tail_length; i++) {
-			g_graph[g_tail[i].first][g_tail[i].second] = 's';
+		g_graph[g_snake.get_coordinates().first][g_snake.get_coordinates().second] = 'S';
+		for (u_int8 i = 0; i < g_snake.get_tail_length(); i++) {
+			g_graph[g_snake.get_tail()[i].first][g_snake.get_tail()[i].second] = 's';
 		}
 
 		// calculate hi-score

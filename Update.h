@@ -8,8 +8,7 @@
 #include "Global_Variables.h"
 
 
-
 // Signature of the function Update()
-u_int8 Update(e_State, u_int8);
+u_int8 Update(e_State, e_Direction);
 
 #endif // !UPDATE
